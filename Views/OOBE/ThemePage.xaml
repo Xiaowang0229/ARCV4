@@ -1,0 +1,26 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ARCV4.Views.OOBE"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="ARCV4.Views.OOBE.ThemePage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ThemePage">
+
+    <Grid>
+
+        <ui:TextBlock x:Name="tb01" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="接下来" VerticalAlignment="Top" Height="44" Width="243" FontWeight="Bold" FontSize="36" Foreground="White"/>
+        <ui:TextBlock x:Name="tb02" HorizontalAlignment="Left" Height="25" Margin="10,59,0,0" TextWrapping="Wrap" Text="请选择该软件的主题设置：" VerticalAlignment="Top" Width="621" FontSize="16" Foreground="White"/>
+        <RadioButton x:Name="AutoButton" Content="跟随系统" Height="36" Margin="86,268,0,0" VerticalAlignment="Top" Width="196" Checked="AutoButton_Checked"/>
+        <RadioButton x:Name="DarkButton" Content="暗黑模式" Height="36" Margin="514,268,0,0" VerticalAlignment="Top" Width="196" Checked="DarkButton_Checked"/>
+        <RadioButton x:Name="LightButton" Content="亮白模式" Height="36" Margin="298,268,0,0" VerticalAlignment="Top" Width="178" Checked="LightButton_Checked"/>
+        <ui:Image x:Name="Auto" HorizontalAlignment="Left" Height="128" Margin="68,135,0,0" VerticalAlignment="Top" Width="128"/>
+        <ui:Image x:Name="White" HorizontalAlignment="Left" Height="128" Margin="286,135,0,0" VerticalAlignment="Top" Width="128"/>
+        <ui:Image x:Name="Dark" HorizontalAlignment="Left" Height="128" Margin="503,135,0,0" VerticalAlignment="Top" Width="128"/>
+        <ui:Button x:Name="ContinueButton" IsEnabled="False" Content="下一步" Height="45" Margin="643,395,0,0" VerticalAlignment="Top" Width="147" Click="ContinueButton_Click"/>
+
+
+    </Grid>
+</Page>
