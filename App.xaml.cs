@@ -1,11 +1,17 @@
-﻿using System.Configuration;
-using System.Data;
+﻿using ARCV4.Views;
 using System.IO;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ToolLib.JsonLib;
+using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
+using Brush = System.Windows.Media.Brush;
+using Brushes = System.Windows.Media.Brushes;
+using Color = System.Drawing.Color;
+using ToolLib.RegistryLib;
+using Microsoft.Win32;
 
 namespace ARCV4
 {
@@ -15,44 +21,79 @@ namespace ARCV4
     public partial class App : System.Windows.Application
     {
         //系统级根常量
-        public static readonly string ProgramVersion = "4.0.0.0 Indev 1";
+        public static readonly string ProgramVersion = "4.0.0.0 Indev 2";
         public static readonly string ProgramPath = Directory.GetCurrentDirectory();
         public static readonly string ConfigPath = ProgramPath + @"\Config.json";
+        public static string Latestversion;
+        public static string Latestlog;
+        public static string Latestlink;
+        public static string Versionlog = "点名器 4.0.0.0 更新说明\r\n\r\n全新架构\r\n本次版本由零开始使用 C# 重写，逻辑更清晰，性能更稳定，响应速度显著提升。\r\n\r\n界面升级\r\n采用 WPF-UI 打造现代化界面，交互更流畅，主题风格和控件体验全面优化，操作更直观。\r\n\r\n核心优化\r\n点名算法升级，随机性更均匀，点名结果更可靠，同时支持更大班级和更多功能扩展。\r\n\r\n扩展基础\r\n此次重构为未来新增功能提供了坚实基础，后续更新可快速迭代，无需担心兼容问题。\r\n\r\n总结\r\n4.0.0.0 是一次真正的全新升级版本，不仅外观焕然一新，也让点名体验更高效、更智能。";
         //备用根常量
         public static FluentWindow OOBEthisWindow;
 
-        public class Config
+        
+        public Config configvalue;
+
+        
+
+        private async void Application_Startup(object sender, StartupEventArgs e)
         {
-            public bool OOBEStatus { get; set; }
-        }
-        public Config OOBEvalue;
-
-
-
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            //预先判断是否首次启动应用
             
+
+            
+            //预先判断是否首次启动应用
+
             if (!File.Exists(ConfigPath))
             {
+                ConfigHelper.ConfigInitalize();
+                FluentWindow window = new Views.OOBEWindow();
+                window.Show();
                 
-                
-                    FluentWindow window = new Views.OOBEWindow();
-                    window.Show();
-                
-                
-
             }
             else if (File.Exists(ConfigPath))
             {
-                OOBEvalue = Json.ReadJson<Config>(ConfigPath);
-                if (OOBEvalue.OOBEStatus == true)
+                configvalue = Json.ReadJson<Config>(ConfigPath);
+                if (configvalue.OOBEStatus == true)
                 {
+                    if (configvalue.AppuseTheme == "Dark")
+                    {
+                        ApplicationThemeManager.Apply(ApplicationTheme.Dark,WindowBackdropType.Mica, true);
+                    }
+                    else if (configvalue.AppuseTheme == "Light")
+                    {
+                        ApplicationThemeManager.Apply(ApplicationTheme.Light, WindowBackdropType.Mica, true);
+                    }
+                    else if (configvalue.AppuseTheme == "Auto")
+                    {
+                        var appTheme = App.Reg_AppsUseLightMode() switch
+                        {
+                            true => ApplicationTheme.Light,
+                            false => ApplicationTheme.Dark
+                        };
+
+                        // 传入 ApplicationTheme（避免类型不匹配）
+                        ApplicationThemeManager.Apply(appTheme, WindowBackdropType.Mica, true);
+
+                        
+                    }
+
                     FluentWindow window = new Views.MainWindow();
                     window.Show();
+                    if (configvalue.IsStartUpCheckUpdate)
+                    {
+                        string a = await App.GetWebPageAsync("https://raw.bgithub.xyz/isHuaMouRen/UpdateService/refs/heads/main/ARCV4/LatestVersion");
+                        if (a != App.ProgramVersion)
+                        {
+                            FluentWindow window2 = new UpdateWindow();
+                            window2.Show();
+                        }
+                    }
+                    
                 }
-                else if (OOBEvalue.OOBEStatus != true)
+                else if (configvalue.OOBEStatus != true)
                 {
+                    
+
                     FluentWindow window = new Views.OOBEWindow();
                     window.Show();
                 }
@@ -94,13 +135,41 @@ namespace ARCV4
             }
         }
 
-        public static string[] AddItemIntoStrings(string[] Origin, string New)
+        public static async Task<string> GetWebPageAsync(string url)
         {
-            List<string> list = new List<string>(Origin);
-            list.Add(New);
-            return list.ToArray();
+            using HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "C# App");
+            string result = await client.GetStringAsync(url);
+            return result;
         }
+
+        public static Brush ConvertColorToBrush(Color color)
+        {
+            return new SolidColorBrush(System.Windows.Media.Color.FromArgb(
+                color.A,
+                color.R,
+                color.G,
+                color.B));
+        }
+
+        public static bool Reg_AppsUseLightMode()
+        {
+            int themestatus = (int)RegistryHelper.ReadRegistryValue(Registry.CurrentUser, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme");
+            if (themestatus == 0x00000001)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        
+
     }
+
+    
 
 }
 

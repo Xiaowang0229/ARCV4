@@ -30,6 +30,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>RootResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\NameListEditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

@@ -10,9 +10,14 @@
       Title="ThemePage">
 
     <Grid>
-
-        <ui:TextBlock x:Name="tb01" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="接下来" VerticalAlignment="Top" Height="44" Width="243" FontWeight="Bold" FontSize="36" Foreground="White"/>
-        <ui:TextBlock x:Name="tb02" HorizontalAlignment="Left" Height="25" Margin="10,59,0,0" TextWrapping="Wrap" Text="请选择该软件的主题设置：" VerticalAlignment="Top" Width="621" FontSize="16" Foreground="White"/>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" 
+        Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+        </Grid.Resources>
+        <ui:TextBlock x:Name="tb01" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="接下来" VerticalAlignment="Top" Height="44" Width="243" FontWeight="Bold" FontSize="36"/>
+        <ui:TextBlock x:Name="tb02" HorizontalAlignment="Left" Height="25" Margin="10,59,0,0" TextWrapping="Wrap" Text="请选择该软件的主题设置：" VerticalAlignment="Top" Width="621" FontSize="16"/>
         <RadioButton x:Name="AutoButton" Content="跟随系统" Height="36" Margin="86,268,0,0" VerticalAlignment="Top" Width="196" Checked="AutoButton_Checked"/>
         <RadioButton x:Name="DarkButton" Content="暗黑模式" Height="36" Margin="514,268,0,0" VerticalAlignment="Top" Width="196" Checked="DarkButton_Checked"/>
         <RadioButton x:Name="LightButton" Content="亮白模式" Height="36" Margin="298,268,0,0" VerticalAlignment="Top" Width="178" Checked="LightButton_Checked"/>

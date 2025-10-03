@@ -10,13 +10,23 @@ namespace ARCV4.Views
     public partial class OOBEWindow : FluentWindow
     {
         
-        public OOBEWindow()
+        public OOBEWindow(bool isCreateNewNameList = false)
         {
             InitializeComponent();
-            App.OOBEthisWindow = this;
-
-            OOBEFrame.Navigate(new EulaPage());
             RootIcon.Source = App.ConvertByteArrayToImageSource(RootResources.IconPNG);
+
+            if (isCreateNewNameList == false)
+            {
+                OOBEFrame.Navigate(new EulaPage());
+            }
+
+            if (isCreateNewNameList == true)
+            {
+                OOBEFrame.Navigate(new NamelistPage());
+                WindowBase.Title = "新建名单";
+                BaseTitlebar.Title = "新建名单";
+            }
+            
 
 
         }

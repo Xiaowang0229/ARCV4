@@ -1,4 +1,4 @@
-﻿<ui:FluentWindow x:Class="ARCV4.Views.OOBEWindow"
+﻿<ui:FluentWindow x:Name="WindowBase" x:Class="ARCV4.Views.OOBEWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
@@ -11,7 +11,13 @@
         mc:Ignorable="d"
         Title="程序初始化" Height="500" Width="800" ExtendsContentIntoTitleBar="True" MinWidth="800" MinHeight="500" MaxWidth="800" MaxHeight="500">
     <Grid>
-        <ui:TitleBar  Width="800" Height="45" Title="程序初始化" ShowMaximize="False" CanMaximize="False">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" 
+        Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+        </Grid.Resources>
+        <ui:TitleBar x:Name="BaseTitlebar"  Width="800" Height="45" Title="程序初始化" ShowMaximize="False" CanMaximize="False">
             <ui:TitleBar.Icon>
                 <ui:ImageIcon x:Name="RootIcon"/>
             </ui:TitleBar.Icon>

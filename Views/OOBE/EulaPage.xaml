@@ -10,8 +10,14 @@
       Title="EulaPage">
 
     <Grid>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="在开始之前" VerticalAlignment="Top" Height="44" Width="243" FontWeight="Bold" FontSize="36" Foreground="White"/>
-        <ui:TextBlock HorizontalAlignment="Left" Height="25" Margin="10,59,0,0" TextWrapping="Wrap" Text="请先仔细阅读并且同意以下协议，如不同意，请立即停止使用该软件：" VerticalAlignment="Top" Width="621" FontSize="16" Foreground="White"/>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" 
+        Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+        </Grid.Resources>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="在开始之前" VerticalAlignment="Top" Height="44" Width="243" FontWeight="Bold" FontSize="36"/>
+        <ui:TextBlock HorizontalAlignment="Left" Height="25" Margin="10,59,0,0" TextWrapping="Wrap" Text="请先仔细阅读并且同意以下协议，如不同意，请立即停止使用该软件：" VerticalAlignment="Top" Width="621" FontSize="16"/>
         <ui:RichTextBox IsReadOnly="True" HorizontalAlignment="Center" Height="309" Margin="0,84,0,0" VerticalAlignment="Top" Width="780">
             <FlowDocument>
                 <Paragraph>

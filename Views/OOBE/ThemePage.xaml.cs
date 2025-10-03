@@ -1,7 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media;
 using ToolLib.JsonLib;
-using ToolLib.RegistryLib;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
 using Application = System.Windows.Application;
@@ -20,73 +19,61 @@ namespace ARCV4.Views.OOBE
             Auto.Source = App.ConvertByteArrayToImageSource(RootResources.ThemeAuto);
             Dark.Source = App.ConvertByteArrayToImageSource(RootResources.ThemeBlack);
             White.Source = App.ConvertByteArrayToImageSource(RootResources.ThemeWhite);
+            configvalue = Json.ReadJson<Config>(App.ConfigPath);
         }
-        
-        public class ApplicationsTheme
-        {
-            public string Theme { get; set; }
-        }
-        public ApplicationsTheme theme;
+
+        public Config configvalue;
 
         private void DarkButton_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
             ApplicationThemeManager.Apply(ApplicationTheme.Dark, WindowBackdropType.Mica, true);
-
-            theme = new ApplicationsTheme
-            {
-                Theme = "Dark"
-            };
-            Json.WriteJson(App.ConfigPath, theme);
+            
+            configvalue.AppuseTheme = "Dark";
+            Json.WriteJson(App.ConfigPath, configvalue);
             var brush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#FFFFFF");
-            tb01.Foreground = brush;
-            tb02.Foreground = brush;
+            //tb01.Foreground = brush;
+            //tb02.Foreground = brush;
             ContinueButton.IsEnabled = true;
+            //ThemeHelpers.ApplyTextBlockForeground(Wpf.Ui.Appearance.ApplicationTheme.Dark);
         }
 
         private void LightButton_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
             ApplicationThemeManager.Apply(ApplicationTheme.Light, WindowBackdropType.Mica, true);
-            theme = new ApplicationsTheme
-            {
-                Theme = "Light"
-            };
-            Json.WriteJson(App.ConfigPath, theme);
+            configvalue.AppuseTheme = "Light";
+            Json.WriteJson(App.ConfigPath, configvalue);
             var brush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#000000");
-            tb01.Foreground = brush;
-            tb02.Foreground = brush;
+            //tb01.Foreground = brush;
+            //tb02.Foreground = brush;
             ContinueButton.IsEnabled = true;
+            //ThemeHelpers.ApplyTextBlockForeground(Wpf.Ui.Appearance.ApplicationTheme.Light);
         }
 
         private void AutoButton_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
-            var systemTheme = SystemThemeManager.GetCachedSystemTheme(); // SystemTheme
-
-            // 映射成 ApplicationTheme（显式转换）
-            var appTheme = systemTheme switch
+            var appTheme = App.Reg_AppsUseLightMode() switch
             {
-                SystemTheme.Light => ApplicationTheme.Light,
-                SystemTheme.Dark => ApplicationTheme.Dark,
-                _ => ApplicationTheme.Light
+                true => ApplicationTheme.Light,
+                false => ApplicationTheme.Dark
             };
 
             // 传入 ApplicationTheme（避免类型不匹配）
             ApplicationThemeManager.Apply(appTheme, WindowBackdropType.Mica, true);
-            theme = new ApplicationsTheme
-            {
-                Theme = "Auto"
-            };
-            Json.WriteJson(App.ConfigPath, theme);
+            configvalue.AppuseTheme = "Auto";
+            Json.WriteJson(App.ConfigPath, configvalue);
             if (appTheme == ApplicationTheme.Light)
             {
-                var brush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#000000");
-                tb01.Foreground = brush;
-                tb02.Foreground = brush;
+                //var brush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#000000");
+                //tb01.Foreground = brush;
+                //tb02.Foreground = brush;
+                //ThemeHelpers.ApplyTextBlockForeground(Wpf.Ui.Appearance.ApplicationTheme.Light);
             }
             if(appTheme == ApplicationTheme.Dark)
             {
-                var brush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#FFFFFF");
-                tb01.Foreground = brush;
-                tb02.Foreground = brush;
+                //var brush = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#FFFFFF");
+                //tb01.Foreground = brush;
+                //tb02.Foreground = brush;
+                //ThemeHelpers.ApplyTextBlockForeground(Wpf.Ui.Appearance.ApplicationTheme.Dark);
             }
             ContinueButton.IsEnabled = true;
         }

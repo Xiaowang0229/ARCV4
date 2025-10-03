@@ -1,14 +1,46 @@
-﻿<Page x:Class="ARCV4.Views.MainPages.About"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ARCV4.Views.MainPages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  x:Class="ARCV4.Views.MainPages.About"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="About">
+      d:DesignHeight="450"
+      Title="About" Width="600">
 
     <Grid>
-        
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" 
+                Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+        </Grid.Resources>
+        <ui:TextBlock HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" TextWrapping="Wrap" Text="关于" VerticalAlignment="Top" Width="172" FontSize="36" FontWeight="Bold"/>
+        <ui:CardExpander HorizontalAlignment="Center" Height="365"  Margin="0,61,0,0" VerticalAlignment="Top" Width="526">
+            <ui:CardExpander.Header>
+                <Grid Height="60">
+                    <ui:Image x:Name="RootImage" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" Height="48" Width="48"/>
+                    <ui:TextBlock x:Name="ProductName" HorizontalAlignment="Left" Margin="79,3,0,0" TextWrapping="Wrap" Text="自动点名器" VerticalAlignment="Top" Height="30" Width="625" FontWeight="Bold" FontSize="24"/>
+                    <ui:TextBlock HorizontalAlignment="Left" Margin="79,37,0,0" TextWrapping="Wrap" Text="©2019-2025 Hanxing(Zhiming) Developer Group" VerticalAlignment="Top" Width="625"/>
+
+                </Grid>
+            </ui:CardExpander.Header>
+            <Grid Height="233">
+                <ui:Button x:Name="ChkUpd" Content="检测更新" VerticalAlignment="Top" Click="ChkUpd_Click" Margin="10,-2,0,0"/>
+                <ui:Button x:Name="BugReport" Content="漏洞反馈" Margin="95,-2,0,0" VerticalAlignment="Top" Click="BugReport_Click"/>
+                <ui:InfoBar Content="文件呜呜"  Margin="10,157,10,0" VerticalAlignment="Top" Height="71" IsOpen="True" IsClosable="False" Message="请注意，本软件自第一个版本发布起，就不是一款收费软件，如您从任何收费渠道下载到该软件，那您一定是被骗了！" Title="温馨提示" FontSize="12"/>
+                <ui:Button x:Name="UserAgreement" Content="用户协议" Margin="180,-2,0,0" VerticalAlignment="Top" Click="UserAgreement_Click"/>
+                <ui:RichTextBox IsReadOnly="True" Margin="10,34,10,81">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run x:Name="RootRun" FontFamily="Microsoft YaHei UI"/>
+                        </Paragraph>
+                    </FlowDocument>
+                </ui:RichTextBox>
+
+            </Grid>
+        </ui:CardExpander>
+
     </Grid>
 </Page>

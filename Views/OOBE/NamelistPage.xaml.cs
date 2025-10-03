@@ -20,6 +20,9 @@ namespace ARCV4.Views.OOBE
     public partial class NamelistPage : Page
     {
         public static string filename;
+        public Config configvalue;
+
+        public Config ConfigReadOnlyValue;
         public NamelistPage()
         {
             InitializeComponent();
@@ -36,6 +39,8 @@ namespace ARCV4.Views.OOBE
                 tb01.Foreground = brush;
                 tb02.Foreground = brush;
             }
+            configvalue = Json.ReadJson<Config>(App.ConfigPath);
+            ConfigReadOnlyValue = Json.ReadJson<Config>(App.ConfigPath);
         }
 
         public class Namelist
@@ -44,12 +49,7 @@ namespace ARCV4.Views.OOBE
         }
         public Namelist namevalue;
 
-        public class Config
-        {
-            public bool OOBEStatus { get; set; }
-            public string[] namelistlocations { get; set; }
-        }
-        public Config configvalue;
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +68,7 @@ namespace ARCV4.Views.OOBE
             if (result == true)
             {
                 filename = saveFileDialog.FileName;
-                
+                NameEditor.Text = "";
                 Rich123.IsReadOnly = false;
                 Finally.IsEnabled = true;
             }
@@ -87,18 +87,16 @@ namespace ARCV4.Views.OOBE
                 new[] { "\r\n", "\n", "\r" },
                 StringSplitOptions.RemoveEmptyEntries
             );
-            string[] filenamelist = { filename };
+            
 
             namevalue = new Namelist
             {
                 names = lines
             };
             Json.WriteJson(filename, namevalue);
-            configvalue = new Config
-            {
-                OOBEStatus = true,
-                namelistlocations = filenamelist
-            };
+            configvalue.namelistlocations.Add(filename);
+            configvalue.CurrentInuseNamelist = filename;
+            configvalue.OOBEStatus = true;
             Json.WriteJson(App.ConfigPath, configvalue);
 
             

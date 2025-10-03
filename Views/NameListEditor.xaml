@@ -1,4 +1,4 @@
-﻿<ui:FluentWindow x:Name="WindowBase" x:Class="ARCV4.Views.CostumMessageBox"
+﻿<ui:FluentWindow x:Name="WindowBase" x:Class="ARCV4.Views.NameListEditor"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,21 +9,21 @@
         xmlns:local="clr-namespace:ARCV4.Views"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="CostumMessageBox" Height="450" Width="400" MinWidth="400" MinHeight="450" MaxWidth="400" MaxHeight="450">
+        Title="编辑名单" Height="450" Width="400" MinWidth="400" MinHeight="450" MaxWidth="400" MaxHeight="450">
     <Grid>
-        <ui:TitleBar x:Name="RootTitleBar"  Width="400" CanMaximize="False" ShowMaximize="False">
+        <ui:TitleBar x:Name="RootTitleBar" Title="编辑名单"  Width="400" CanMaximize="False" ShowMaximize="False">
             <ui:TitleBar.Icon>
                 <ui:ImageIcon x:Name="RootIcon"/>
             </ui:TitleBar.Icon>
         </ui:TitleBar>
-        <ui:RichTextBox x:Name="RootTextBox" IsReadOnly="True" HorizontalAlignment="Center" Height="316" Margin="0,53,0,0" VerticalAlignment="Top" Width="380">
-            <FlowDocument>
+        <ui:RichTextBox x:Name="RootTextBox" HorizontalAlignment="Center" Height="316" Margin="0,53,0,0" VerticalAlignment="Top" Width="380">
+            <FlowDocument LineHeight="1">
                 <Paragraph>
                     <Run x:Name="run" FontFamily="Microsoft YaHei UI"/>
                 </Paragraph>
             </FlowDocument>
         </ui:RichTextBox>
-        <ui:Button Content="确定" Height="51" Margin="231,374,0,0" VerticalAlignment="Top" Width="159" Click="Button_Click"/>
+        <ui:Button Content="保存并退出" Height="51" Margin="231,374,0,0" VerticalAlignment="Top" Width="159" Click="Button_Click"/>
 
     </Grid>
 </ui:FluentWindow>
