@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using ToolLib.JsonLib;
+﻿using ToolLib.JsonLib;
 using Brush = System.Windows.Media.Brush;
 
 namespace ARCV4
@@ -49,11 +43,23 @@ namespace ARCV4
         public int AutoDianmingintervaltick { get; set; }
         public int ListDianmingNumbers { get; set; }
         public string CurrentInuseNamelist { get; set; }
-        public string DianMingFont { get; set; }
+        public System.Windows.Media.FontFamily DianMingFont { get; set; }
         public Brush DianmingFontColor { get; set; }
         public string DianmingMusic { get; set; }
+        public string DianmingPassword { get; set; }
+        public bool LockOnSettings { get; set; }
+        public bool? IsApplicationMinimizetoTray { get; set; }
+        public bool Hoverball { get; set; }
+        public bool HoverballTopMost { get; set; }
+        public double HoverballLeft { get; set; }
+        public double HoverballTop { get; set; }
     }
 
+    public class Namelist
+    {
+        public string[] names { get; set; }
+    }
+        
     public class ConfigHelper
     {
         public static void ConfigInitalize()
@@ -68,12 +74,22 @@ namespace ARCV4
                 AutoDianmingintervaltick = 1,
                 ListDianmingNumbers = 5,
                 CurrentInuseNamelist = "",
-                DianMingFont = "Microsoft YaHei UI",
-                DianmingFontColor = (System.Windows.Media.Brush)new BrushConverter().ConvertFromString("#000000"),
-                DianmingMusic = ""
+                DianMingFont = null,
+                DianmingFontColor = null,
+                DianmingMusic = null,
+                DianmingPassword = null,
+                LockOnSettings = false,
+                IsApplicationMinimizetoTray = null,
+                Hoverball = false,
+                HoverballTopMost = true,
+                HoverballLeft = 0,
+                HoverballTop = 0
             };
+
             Json.WriteJson(App.ConfigPath, configvalue);
         }
     }
+
+    
 
 }

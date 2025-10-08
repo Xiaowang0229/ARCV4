@@ -7,8 +7,8 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="ARCV4.Views.MainPages.ListNamePage"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ListNamePage">
-
+      Title="ListNamePage" KeyDown="Page_KeyDown">
+    
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
@@ -16,6 +16,15 @@
         Value="{DynamicResource TextFillColorPrimaryBrush}" />
             </Style>
         </Grid.Resources>
-        <ui:TextBlock HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" TextWrapping="Wrap" Text="列表点名" VerticalAlignment="Top" Width="434" FontSize="36" FontWeight="Bold"/>
+        <ui:TextBlock HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" TextWrapping="Wrap" Text="批量点名" VerticalAlignment="Top" Width="434" FontSize="36" FontWeight="Bold"/>
+        <ui:TextBlock x:Name="NamelistPath" HorizontalAlignment="Left" Margin="0,416,0,0" TextWrapping="Wrap" Text="当前名单：" VerticalAlignment="Top" FontSize="12" Width="780"/>
+        <ui:Button x:Name="StartStopButton" Content="开始点名" Height="124" Margin="0,272,0,0" VerticalAlignment="Top" Width="308" HorizontalAlignment="Center" FontSize="36" Click="StartStopButton_Click"/>
+        <ui:RichTextBox IsReadOnly="True" HorizontalAlignment="Center" Height="206" Margin="0,58,0,0" VerticalAlignment="Top" Width="564">
+            <FlowDocument>
+                <Paragraph>
+                    <Run x:Name="roottextbox" FontFamily="Microsoft YaHei UI" FontSize="30" Text="请开始点名" FontWeight="Bold"/>
+                </Paragraph>
+            </FlowDocument>
+        </ui:RichTextBox>
     </Grid>
 </Page>

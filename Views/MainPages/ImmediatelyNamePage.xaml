@@ -7,8 +7,8 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="ARCV4.Views.MainPages.ImmediatelyNamePage"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ImmediatelyNamePage">
-
+      Title="ImmediatelyNamePage" KeyDown="Page_KeyDown">
+    
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
@@ -17,5 +17,8 @@
             </Style>
         </Grid.Resources>
         <ui:TextBlock HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" TextWrapping="Wrap" Text="立即点名" VerticalAlignment="Top" Width="434" FontSize="36" FontWeight="Bold"/>
+        <ui:TextBlock x:Name="NamelistPath" HorizontalAlignment="Left" Margin="0,416,0,0" TextWrapping="Wrap" Text="当前名单：" VerticalAlignment="Top" FontSize="12" Width="780"/>
+        <ui:TextBlock x:Name="NameBlock" TextAlignment="Center" HorizontalAlignment="Center" Height="134" Margin="0,85,0,0" TextWrapping="Wrap" Text="请开始点名" VerticalAlignment="Top" Width="780" FontSize="72" FontWeight="Bold"/>
+        <ui:Button x:Name="StartStopButton" Content="立即点名" Height="124" Margin="0,272,0,0" VerticalAlignment="Top" Width="308" HorizontalAlignment="Center" FontSize="36" Click="StartStopButton_Click"/>
     </Grid>
 </Page>

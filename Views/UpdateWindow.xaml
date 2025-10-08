@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        xmlns:local="clr-namespace:ARCV4.Views"
+        xmlns:local="clr-namespace:ARCV4.Views" x:Name="WindowBase"
         x:Class="ARCV4.Views.UpdateWindow"
                  ExtendsContentIntoTitleBar="True"
                  ResizeMode="NoResize"
@@ -18,7 +18,7 @@
         Value="{DynamicResource TextFillColorPrimaryBrush}" />
             </Style>
         </Grid.Resources>
-        <ui:TitleBar Title="检测更新" CanMaximize="False" ShowMaximize="False">
+        <ui:TitleBar x:Name="RootTitle" Title="检测更新" CanMaximize="False" ShowMaximize="False">
             <ui:TitleBar.Icon>
                 <ui:ImageIcon x:Name="RootIcon"/>
             </ui:TitleBar.Icon>
@@ -34,14 +34,16 @@
                 </Grid>
             </ui:CardExpander.Header>
             <Grid Height="325">
-                <ui:Button Content="立即更新" Margin="360,280,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click" Height="35"/>
-                <ui:RichTextBox x:Name="RootBox" IsReadOnly="True" Margin="0,0,0,50">
+                <ui:Button x:Name="UpdateNow" Content="立即更新" Margin="360,272,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click" Height="35"/>
+                <ui:RichTextBox x:Name="RootBox" IsReadOnly="True" Margin="0,0,0,58">
                     <FlowDocument>
                         <Paragraph>
                             <Run x:Name="RootRun" FontFamily="Microsoft YaHei UI"/>
                         </Paragraph>
                     </FlowDocument>
                 </ui:RichTextBox>
+                <ProgressBar x:Name="DownloadProgress" HorizontalAlignment="Center" Height="5" Margin="0,314,0,0" VerticalAlignment="Top" Width="480" Visibility="Hidden"/>
+                <TextBlock x:Name="DownloadTextBlock" HorizontalAlignment="Left" Height="23" Margin="10,282,0,0" TextWrapping="Wrap" Text="下载进度：" VerticalAlignment="Top" Width="150" FontSize="18" Visibility="Hidden" />
             </Grid>
         </ui:CardExpander>
 

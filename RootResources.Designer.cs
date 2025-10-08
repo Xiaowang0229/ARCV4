@@ -63,6 +63,46 @@ namespace ARCV4 {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
+        public static byte[] AutoTheme {
+            get {
+                object obj = ResourceManager.GetObject("AutoTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] DarkTheme {
+            get {
+                object obj = ResourceManager.GetObject("DarkTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] HoverNormal {
+            get {
+                object obj = ResourceManager.GetObject("HoverNormal", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] HoverPress {
+            get {
+                object obj = ResourceManager.GetObject("HoverPress", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
         public static byte[] Icon {
             get {
                 object obj = ResourceManager.GetObject("Icon", resourceCulture);
@@ -83,29 +123,9 @@ namespace ARCV4 {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] ThemeAuto {
+        public static byte[] LightTheme {
             get {
-                object obj = ResourceManager.GetObject("ThemeAuto", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] ThemeBlack {
-            get {
-                object obj = ResourceManager.GetObject("ThemeBlack", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] ThemeWhite {
-            get {
-                object obj = ResourceManager.GetObject("ThemeWhite", resourceCulture);
+                object obj = ResourceManager.GetObject("LightTheme", resourceCulture);
                 return ((byte[])(obj));
             }
         }

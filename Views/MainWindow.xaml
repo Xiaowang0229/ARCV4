@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Title="主窗口" Height="500" Width="800" ExtendsContentIntoTitleBar="True" MinWidth="800" MinHeight="500" MaxWidth="800" MaxHeight="500" Loaded="FluentWindow_Loaded">
+        Title="主窗口" Height="500" Width="800" ExtendsContentIntoTitleBar="True" MinWidth="800" MinHeight="500" MaxWidth="800" MaxHeight="500" Loaded="FluentWindow_Loaded" Closing="FluentWindow_Closing">
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock">
@@ -17,36 +17,36 @@
         Value="{DynamicResource TextFillColorPrimaryBrush}" />
             </Style>
         </Grid.Resources>
-        <ui:TitleBar  Width="800" Height="45" Title="自动点名器 Indev 4.0.0.0">
+        <ui:TitleBar x:Name="RootTitle"  Width="800" Height="45" Title="自动点名器 " CloseWindowByDoubleClickOnIcon="True" CanMaximize="False" ShowMaximize="False">
             <ui:TitleBar.Icon>
                 <ui:ImageIcon x:Name="RootIcon"/>
             </ui:TitleBar.Icon>
         </ui:TitleBar>
-        <ui:NavigationView x:Name="RootNavi" HorizontalAlignment="Center" Height="440" Margin="0,45,0,0" VerticalAlignment="Top" Width="800" OpenPaneLength="200" IsBackButtonVisible="Collapsed">
+        <ui:NavigationView x:Name="RootNavi" HorizontalAlignment="Center" Height="440" Margin="0,45,0,0" VerticalAlignment="Top" Width="800" OpenPaneLength="200" IsBackButtonVisible="Collapsed" PaneOpened="RootNavi_PaneOpened" PaneClosed="RootNavi_PaneClosed">
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="手动点名" TargetPageType="{x:Type pages:AutoDianmingPage}">
+                <ui:NavigationViewItem x:Name="NavItem1" Content="手动点名" TargetPageType="{x:Type pages:AutoDianmingPage}" Click="NavItem1_Click">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Home24"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="立即点名" TargetPageType="{x:Type pages:ImmediatelyNamePage}">
+                <ui:NavigationViewItem x:Name="NavItem2" Content="立即点名" TargetPageType="{x:Type pages:ImmediatelyNamePage}" Click="NavItem2_Click">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Timer24"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="批量点名" TargetPageType="{x:Type pages:ListNamePage}">
+                <ui:NavigationViewItem x:Name="NavItem3" Content="批量点名" TargetPageType="{x:Type pages:ListNamePage}" Click="NavItem3_Click">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="List24"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
             <ui:NavigationView.FooterMenuItems>
-                <ui:NavigationViewItem Content="设置" TargetPageType="{x:Type pages:Settings}">
+                <ui:NavigationViewItem x:Name="NavItem4" Content="设置" TargetPageType="{x:Type pages:Settings}" Click="NavItem4_Click">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Settings24"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="关于" TargetPageType="{x:Type pages:About}">
+                <ui:NavigationViewItem x:Name="NavItem5" Content="关于" TargetPageType="{x:Type pages:About}" Click="NavItem5_Click">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Info24"/>
                     </ui:NavigationViewItem.Icon>

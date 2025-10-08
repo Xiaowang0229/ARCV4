@@ -7,7 +7,7 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  x:Class="ARCV4.Views.MainPages.About"
       mc:Ignorable="d" 
       d:DesignHeight="450"
-      Title="About" Width="600">
+      Title="About" Width="800" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.Resources>
@@ -17,7 +17,7 @@
             </Style>
         </Grid.Resources>
         <ui:TextBlock HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" TextWrapping="Wrap" Text="关于" VerticalAlignment="Top" Width="172" FontSize="36" FontWeight="Bold"/>
-        <ui:CardExpander HorizontalAlignment="Center" Height="365"  Margin="0,61,0,0" VerticalAlignment="Top" Width="526">
+        <ui:CardExpander x:Name="RootExpander" HorizontalAlignment="Left" Height="365"  Margin="10,61,0,0" VerticalAlignment="Top" Width="570">
             <ui:CardExpander.Header>
                 <Grid Height="60">
                     <ui:Image x:Name="RootImage" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" Height="48" Width="48"/>

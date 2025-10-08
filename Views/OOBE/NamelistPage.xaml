@@ -19,9 +19,8 @@
         <ui:TextBlock x:Name="tb01" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="最后一步" VerticalAlignment="Top" Height="44" Width="243" FontWeight="Bold" FontSize="36"/>
         <ui:TextBlock x:Name="tb02" HorizontalAlignment="Left" Height="25" Margin="10,59,0,0" TextWrapping="Wrap" Text="添加您的第一份名单即可完成设置！" VerticalAlignment="Top" Width="621" FontSize="16"/>
         <ui:Button x:Name="Finally" Content="完成设置" Height="48" Margin="632,392,0,0" VerticalAlignment="Top" Width="163" IsEnabled="False" Click="Finally_Click"/>
-        <Button Content="从表格导入" Height="42" Margin="14,398,0,0" VerticalAlignment="Top" Width="124" IsEnabled="False"/>
-        <Button Content="从旧版导入" Height="42" Margin="146,398,0,0" VerticalAlignment="Top" Width="124" IsEnabled="False"/>
-        <Button Content="新建名单" Height="42" Margin="276,398,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click"/>
+        <Button Content="从旧版导入" Height="42" Margin="136,398,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click_1"/>
+        <Button Content="新建名单" Height="42" Margin="266,398,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click"/>
         <RichTextBox IsReadOnly="True" x:Name="Rich123" HorizontalAlignment="Left" Height="303" Margin="10,84,0,0" VerticalAlignment="Top" Width="785" >
             <FlowDocument LineHeight="1">
                 <Paragraph>
@@ -29,6 +28,8 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+        <CheckBox x:Name="PasswordBox" Content="创建更改名单密码" Height="37" Margin="392,403,0,0" VerticalAlignment="Top" Width="168"/>
+        <ui:Button Content="导入已有名单" Height="42" Margin="10,398,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click_2"/>
 
 
 

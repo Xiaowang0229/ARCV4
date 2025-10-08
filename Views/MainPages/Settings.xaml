@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ARCV4.Views.MainPages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="ARCV4.Views.MainPages.Settings"
       mc:Ignorable="d"
-      Title="Settings" Width="780" Height="652" Loaded="Page_Loaded">
+      Title="Settings" Width="780" Height="787" Loaded="Page_Loaded">
 
     <ui:DynamicScrollViewer  Width="780" VerticalScrollBarVisibility="Visible">
         <Grid>
@@ -19,30 +19,38 @@
             <ui:TextBlock HorizontalAlignment="Left" Height="45" Margin="10,10,0,0" TextWrapping="Wrap" Text="设置" VerticalAlignment="Top" Width="172" FontSize="36" FontWeight="Bold"/>
             <ui:TextBlock HorizontalAlignment="Left" Height="25" Margin="10,82,0,0" TextWrapping="Wrap" Text="自动点名，立即点名，批量点名所使用的点名名单(Json 格式)：" VerticalAlignment="Top" Width="780" FontSize="18"/>
             <ui:TextBlock HorizontalAlignment="Left" Height="26" Margin="10,423,0,0" TextWrapping="Wrap" Text="主题设置：                       " VerticalAlignment="Top" Width="780" FontSize="18" FontWeight="Bold"/>
-            <RadioButton x:Name="DarkModeButton" Content="深色模式" Margin="10,449,0,0" Width="780" VerticalAlignment="Top" Checked="DarkModeButton_Checked"/>
-            <RadioButton x:Name="LightModeButton" Content="浅色模式" Margin="10,481,0,0" Width="780" VerticalAlignment="Top" Checked="LightModeButton_Checked"/>
-            <RadioButton x:Name="FollowSystemButton" Content="跟随系统" Margin="10,513,0,0" VerticalAlignment="Top" Width="780" Checked="FollowSystemButton_Checked"/>
-            <Button Content="新建名单" Height="43" Margin="10,155,0,0" VerticalAlignment="Top" Width="134" Click="Button_Click"/>
+            <RadioButton x:Name="DarkModeButton" Content="深色模式" Margin="10,449,0,0" Width="682" VerticalAlignment="Top" Checked="DarkModeButton_Checked"/>
+            <RadioButton x:Name="LightModeButton" Content="浅色模式" Margin="10,481,0,0" Width="682" VerticalAlignment="Top" Checked="LightModeButton_Checked"/>
+            <RadioButton x:Name="FollowSystemButton" Content="跟随系统" Margin="10,513,0,0" VerticalAlignment="Top" Width="682" Checked="FollowSystemButton_Checked"/>
+            <Button Content="新建名单" Height="43" Margin="10,155,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click"/>
             <ui:TextBlock HorizontalAlignment="Center" Height="26" Margin="0,56,0,0" TextWrapping="Wrap" Text="点名设置：                       " VerticalAlignment="Top" Width="760" FontSize="18" FontWeight="Bold"/>
             <ui:TextBlock HorizontalAlignment="Left" Height="25" Margin="10,206,0,0" TextWrapping="Wrap" Text="自动点名显示每个人名之间的间隔（ms）：" VerticalAlignment="Top" Width="780" FontSize="18"/>
-            <ui:NumberBox InputMethod.IsInputMethodEnabled="False" x:Name="AutoDianmingIntervalTickBox" HorizontalAlignment="Left" Height="36" Margin="10,231,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="197" PreviewTextInput="AutoDianmingIntervalTickBox_PreviewTextInput_1" ValueChanged="AutoDianmingIntervalTickBox_TextChanged" PreviewKeyDown="AutoDianmingIntervalTickBox_PreviewKeyDown"/>
             <ui:TextBlock HorizontalAlignment="Left" Height="26" Margin="10,276,0,0" TextWrapping="Wrap" Text="每次批量点名的个数（建议不要设置太多，以免占用内存造成卡顿）：" VerticalAlignment="Top" Width="780" FontSize="18"/>
-            <ui:NumberBox InputMethod.IsInputMethodEnabled="False" x:Name="ListDianmingNumbers" HorizontalAlignment="Left" Height="36" Margin="10,302,0,0" TextWrapping="Wrap" Text="1" Width="197" VerticalAlignment="Top" PreviewTextInput="ListDianmingNumbers_PreviewTextInput_1" ValueChanged="ListDianmingNumbers_TextChanged" PreviewKeyDown="ListDianmingNumbers_PreviewKeyDown"/>
-            <ui:TextBlock HorizontalAlignment="Left" Height="26" Margin="10,551,0,0" TextWrapping="Wrap" Text="杂项设置：                       " VerticalAlignment="Top" Width="780" FontSize="18" FontWeight="Bold"/>
-            <ui:ToggleSwitch x:Name="StartUpCheckUpdate" Content="启动时检测更新" Margin="0,582,0,0" VerticalAlignment="Top" Width="760" HorizontalAlignment="Center" Click="StartUpCheckUpdate_Click"/>
-            <ui:DropDownButton x:Name="ChooseNamelistButton" Content="名单选择……" Height="43" Margin="10,107,0,0" VerticalAlignment="Top" Width="593" FontSize="12">
+            <ui:TextBlock HorizontalAlignment="Left" Height="26" Margin="10,633,0,0" TextWrapping="Wrap" Text="杂项设置：                       " VerticalAlignment="Top" Width="780" FontSize="18" FontWeight="Bold"/>
+            <ui:ToggleSwitch x:Name="StartUpCheckUpdate" Content="启动时检测更新" Margin="0,664,0,0" VerticalAlignment="Top" Width="760" HorizontalAlignment="Center" Click="StartUpCheckUpdate_Click"/>
+            <ui:DropDownButton x:Name="ChooseNamelistButton" Content="名单选择……" Height="43" Margin="10,107,0,0" VerticalAlignment="Top" Width="575" FontSize="12">
                 <ui:DropDownButton.Flyout>
                     <ContextMenu x:Name="NameListMenu">
 
                     </ContextMenu>
                 </ui:DropDownButton.Flyout>
             </ui:DropDownButton>
-            <Button x:Name="EditNamelist" Content="编辑当前选中名单" Height="43" Margin="149,155,0,0" VerticalAlignment="Top" Width="157" Click="EditNamelist_Click"/>
+            <Button x:Name="EditNamelist" Content="编辑当前选中名单" Height="43" Margin="132,155,0,0" VerticalAlignment="Top" Width="157" Click="EditNamelist_Click"/>
             <ui:TextBlock HorizontalAlignment="Left" Height="26" Margin="10,343,0,0" TextWrapping="Wrap" Text="点名杂项设置……" VerticalAlignment="Top" Width="780" FontSize="18"/>
-            <ui:Button x:Name="DianMingFont" Content="编辑点名字体" Height="44" Margin="10,369,0,0" VerticalAlignment="Top" Width="146" Click="DianMingFont_Click"/>
-            <ui:Button x:Name="DianMingFontColor" Content="编辑字体颜色" Height="44" Margin="161,369,0,0" VerticalAlignment="Top" Width="146" Click="DianMingFontColor_Click"/>
-            <ui:Button x:Name="DianmingMusic" Content="编辑点名音乐" Height="44" Margin="312,369,0,0" VerticalAlignment="Top" Width="146" Click="DianmingMusic_Click"/>
-            <ui:Button Content="配置项恢复默认值（非必要请勿使用）" Height="35" Margin="14,607,0,0" VerticalAlignment="Top" Width="274" Foreground="#FFC50000" Click="Button_Click_1"/>
+            <ui:Button x:Name="DianMingFont" Content="编辑点名字体及颜色" Height="44" Margin="10,369,0,0" VerticalAlignment="Top" Width="172" Click="DianMingFont_Click"/>
+            <ui:Button x:Name="DianmingMusic" Content="编辑点名音乐" Height="44" Margin="187,369,0,0" VerticalAlignment="Top" Width="146" Click="DianmingMusic_Click"/>
+            <ui:Button x:Name="EditPassword" Content="更改编辑名单密码" Height="43" Margin="291,155,0,0" VerticalAlignment="Top" Width="146" Click="Button_Click_1"/>
+            <ui:Button x:Name="DelPassword" Content="删除密码" Height="43" Margin="439,155,0,0" VerticalAlignment="Top" Width="146" Click="Button_Click_2"/>
+            <ui:Button Content="删除配置项" Height="35" Margin="10,695,0,0" VerticalAlignment="Top" Width="172" Click="Button_Click_3"/>
+            <ui:ToggleSwitch x:Name="LockOnSettings" Content="锁定设置项" Margin="10,760,0,0" VerticalAlignment="Top" Click="LockOnSettings_Click"/>
+            <ui:Button x:Name="DefaultCostumSettings" Content="恢复默认设置" Height="44" Margin="338,369,0,0" VerticalAlignment="Top" Width="141" Click="DefaultCostumSettings_Click"/>
+            <ui:TextBox ClearButtonEnabled="False" InputMethod.IsInputMethodEnabled="False" x:Name="AutoInterval" HorizontalAlignment="Left" Height="40" Margin="10,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" TextChanged="AutoInterval_TextChanged" PreviewKeyDown="AutoInterval_PreviewKeyDown" PreviewTextInput="AutoInterval_PreviewTextInput"/>
+            <ui:TextBox ClearButtonEnabled="False" InputMethod.IsInputMethodEnabled="False" x:Name="ListNum" HorizontalAlignment="Left" Height="40" Margin="10,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158" TextChanged="ListNum_TextChanged" PreviewTextInput="ListNum_PreviewTextInput" PreviewKeyDown="ListNum_PreviewKeyDown"/>
+            <ui:TextBlock HorizontalAlignment="Left" Height="28" Margin="10,550,0,0" TextWrapping="Wrap" Text="悬浮球设置：                       " VerticalAlignment="Top" Width="780" FontSize="18" FontWeight="Bold"/>
+            <ui:ToggleSwitch x:Name="LaunchHoverBall" Content="启用悬浮球" Margin="10,578,0,0" VerticalAlignment="Top" Click="LaunchHoverBall_Click"/>
+            <ui:ToggleSwitch x:Name="HoverBallTopButton" Content="悬浮球总在最前" Margin="10,603,0,0" VerticalAlignment="Top" Click="HoverBallTopButton_Click"/>
+            <ui:ToggleSwitch x:Name="ApplicationExittoTray" Content="程序关闭时最小化到任务栏" Margin="10,735,0,0" VerticalAlignment="Top" Click="ApplicationExittoTray_Click"/>
+
         </Grid>
     </ui:DynamicScrollViewer>
 </Page>

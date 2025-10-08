@@ -1,9 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using ARCV4.Views.MainPages;
+using System.Windows.Controls;
 using System.Windows.Media;
 using ToolLib.JsonLib;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
 using Application = System.Windows.Application;
+using Brush = System.Windows.Media.Brush;
 
 
 namespace ARCV4.Views.OOBE
@@ -16,9 +18,9 @@ namespace ARCV4.Views.OOBE
         public ThemePage()
         {
             InitializeComponent();
-            Auto.Source = App.ConvertByteArrayToImageSource(RootResources.ThemeAuto);
-            Dark.Source = App.ConvertByteArrayToImageSource(RootResources.ThemeBlack);
-            White.Source = App.ConvertByteArrayToImageSource(RootResources.ThemeWhite);
+            Auto.Source = App.ConvertByteArrayToImageSource(RootResources.AutoTheme);
+            Dark.Source = App.ConvertByteArrayToImageSource(RootResources.DarkTheme);
+            White.Source = App.ConvertByteArrayToImageSource(RootResources.LightTheme);
             configvalue = Json.ReadJson<Config>(App.ConfigPath);
         }
 
@@ -83,6 +85,51 @@ namespace ARCV4.Views.OOBE
             var win = Application.Current.Windows.OfType<OOBEWindow>().FirstOrDefault();
             win.OOBEFrame.Navigate(new NamelistPage());
             win.OOBEProgress.Value = 66;
+        }
+
+        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            LightButton.IsChecked = true;
+        }
+
+        
+
+        private void FontButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+            fontDialog.ShowColor = true;
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                System.Windows.Media.FontFamily fontfamilyresult = App.ConvertToFontFamily(fontDialog.Font);
+                Brush colorresult = App.ConvertColorToBrush(fontDialog.Color);
+                //MessageBox.Show(result.Name.ToString());
+                configvalue.DianMingFont = fontfamilyresult;
+                configvalue.DianmingFontColor = colorresult;
+                Json.WriteJson(App.ConfigPath, configvalue);
+                
+            }
+        }
+
+        private void MusicButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            // 创建 SaveFileDialog
+            OpenFileDialog saveFileDialog = new OpenFileDialog();
+
+            // 设置默认文件扩展名
+            saveFileDialog.DefaultExt = ".mp3";
+
+            // 设置可选文件类型
+            saveFileDialog.Filter = "点名音乐文件 (*.mp3)|*.mp3";
+
+            // 打开对话框
+            DialogResult result = saveFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                configvalue.DianmingMusic = saveFileDialog.FileName;
+                Json.WriteJson(App.ConfigPath, configvalue);
+                
+            }
         }
     }
 }
